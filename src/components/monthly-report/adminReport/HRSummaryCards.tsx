@@ -51,7 +51,7 @@ const kpis = [
     label: "Productivity Score",
     value: "88",
     unit: "%",
-    sub: "Based on attendance + tasks completed",
+    sub: "Based on attendance + tasks ",
   },
   {
     icon: UserMinus,

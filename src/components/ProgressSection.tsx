@@ -103,7 +103,7 @@ export default function ProgressSection() {
   return (
     <div className="flex gap-5 flex-wrap lg:flex-nowrap">
       {/* Overall Progress */}
-      <div className="flex-1 bg-white border border-gray-200 rounded-2xl p-6 min-w-[300px] shadow-sm">
+      <div className="flex-1 grid sm:grid-cols-1  md:grid-col-2 bg-white border border-gray-200 rounded-2xl p-6 min-w-[300px] shadow-sm">
         <h2 className="font-bold text-base mb-5" style={{ color: "#006cb7" }}>
           Overall Progress
         </h2>
@@ -115,7 +115,7 @@ export default function ProgressSection() {
               const pct = Math.round((item.value / total) * 100);
               return (
                 <div key={item.label}>
-                  <div className="flex items-center justify-between mb-1.5">
+                  <div className="  grid sm:grid-cols-1  md:grid-col-2   mb-1.5">
                     <div className="flex items-center gap-2">
                       <div
                         className="w-2.5 h-2.5 rounded-full"
