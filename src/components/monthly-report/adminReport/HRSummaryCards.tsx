@@ -73,11 +73,11 @@ const kpis = [
 
 export default function HRSummaryCards() {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-7 gap-4 mb-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-7 2xl:grid-cols-7 gap-4 mb-6">
       {kpis.map((k, i) => (
         <div
           key={i}
-          className="bg-white rounded-2xl border border-gray-100 shadow-sm px-6 py-5 min-h-[160px] hover:shadow-md transition"
+          className="bg-white rounded-2xl border border-gray-100 shadow-sm px-6 py-5 min-h-40 hover:shadow-md transition"
         >
           {/* Top Row */}
           <div className="flex items-center gap-3">

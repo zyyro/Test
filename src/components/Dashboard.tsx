@@ -134,6 +134,9 @@ export default function Dashboard() {
     if (cardId === "admin") {
       router.push("Monthly-Report-List/Admin-and-Finance/AdminReport");
     }
+     if (cardId === "me") {
+      router.push("Monthly-Report-List/M&E");
+    }
   };
 
   return (
