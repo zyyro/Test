@@ -14,6 +14,7 @@ import {
   Cell,
   Legend,
 } from "recharts";
+import { text } from "stream/consumers";
 
 const BLUE = "#006cb7";
 
@@ -33,15 +34,15 @@ const sectorBudget = [
   { name: "Technical", value: 30, color: "#7c3aed" },
   { name: "Tourism", value: 25, color: "#f59e0b" },
   { name: "Digital", value: 20, color: "#3b82f6" },
-  { name: "Digital", value: 20, color: "#ef4444" },
+  { name: "Agriculture", value: 20, color: "#ef4444" },
   { name: "Other", value: 5, color: "#10b981" },
 ];
 const sectorBudgetLeft = [
-  { name: "Technical", value: 30, color: "#7c3aed" },
-  { name: "Tourism", value: 25, color: "#f59e0b" },
-  { name: "Digital", value: 20, color: "#3b82f6" },
-  { name: "Digital", value: 20, color: "#ef4444" },
-  { name: "Other", value: 5, color: "#10b981" },
+  { text: "Technical", sub: "30%", color: "#7c3aed" },
+  { text: "Tourism", sub: "25%", color: "#f59e0b" },
+  { text: "Digital", sub: "20%", color: "#3b82f6" },
+  { text: "Agriculture", sub: "20%", color: "#ef4444" },
+  { text: "Other", sub: "5%", color: "#10b981" },
 ];
 
 const tooltipStyle = {
@@ -76,7 +77,7 @@ function renderLabel({ cx, cy, midAngle, outerRadius, name, value }: any) {
 
 export default function DisbursementCharts() {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mb-6">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-6">
       {/* Monthly Disbursement */}
       <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
         <h3 className="font-bold text-base mb-4" style={{ color: BLUE }}>
@@ -125,7 +126,7 @@ export default function DisbursementCharts() {
       </div>
 
       {/* Budget by Sector */}
-      <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
+      {/* <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
         <h3 className="font-bold text-base mb-4" style={{ color: BLUE }}>
           Budget by Sector
         </h3>
@@ -153,11 +154,22 @@ export default function DisbursementCharts() {
             </PieChart>
           </ResponsiveContainer>
           <div className="ml-15 p-5">
-           {sectorBudgetLeft.map((s, i) => (<li key={i}>{s.name}: {s.value}%</li>))}
-
+            {sectorBudgetLeft.map((item, i) => (
+              <li
+                key={i}
+                className="flex items-start mt-3 gap-2 text-lg text-gray-600"
+              >
+                <span
+                  className="w-2.5 h-2.5 rounded-full mt-3 shrink-0"
+                  style={{ backgroundColor: item.color }}
+                />
+                <span>{item.text}</span>
+                <span className="font-bold text-gray-800">{item.sub}</span>
+              </li>
+            ))}
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

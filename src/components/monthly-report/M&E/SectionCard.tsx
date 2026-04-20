@@ -160,19 +160,19 @@ function InputsPanel() {
       <div className="flex items-center gap-3 mb-5">
         <div
           className="w-12 h-12 rounded-xl flex items-center justify-center"
-          style={{ background: "#10b98115" }}
+          style={{ background: "#006cb715" }}
         >
-          <FolderInput size={20} className="text-emerald-500" />
+          <FolderInput size={20} className="text-[#006cb7]" />
         </div>
-        <h3 className="font-bold text-2xl text-emerald-600">Inputs</h3>
+        <h3 className="font-bold text-2xl text-[#006cb7]">Inputs</h3>
       </div>
       <div className="space-y-3">
         {inputs.map((c, i) => (
           <div
             key={i}
-            className="flex gap-3 p-3 rounded-xl bg-emerald-50/60 border border-emerald-100"
+            className="flex gap-3 p-3 rounded-xl bg-[#006cb715] border border-[#006cb715]"
           >
-            <div className="w-2 h-2 rounded-full bg-emerald-400 mt-2 shrink-0" />
+            <div className="w-2 h-2 rounded-full bg-[#006cb7] mt-2 shrink-0" />
             <div>
               <p className="text-gray-800 text-2xl font-semibold leading-snug">
                 ${c.value}
@@ -322,11 +322,11 @@ function OutcomesPanel() {
         <div className="flex items-center gap-3 mb-5">
           <div
             className="w-12 h-12 rounded-xl flex items-center justify-center"
-            style={{ background: "#ef444415" }}
+            style={{ background: "#10b98115" }}
           >
-            <BadgeCheck size={20} className="text-[#ef4444]" />
+            <BadgeCheck size={20} className="text-emerald-500" />
           </div>
-          <h3 className="font-bold text-2xl text-[#ef4444]">Outcomes</h3>
+          <h3 className="font-bold text-2xl text-emerald-500">Outcomes</h3>
         </div>
         {/* Body */}
         <div className="p-2">
@@ -451,7 +451,7 @@ function OutcomesPanel() {
 
 export default function SectionCard() {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-2 mb-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 mb-6">
       <InputsPanel />
       <ActivitiesPanel />
       <OutputPanel />

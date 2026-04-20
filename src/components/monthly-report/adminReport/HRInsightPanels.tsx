@@ -1,12 +1,15 @@
 "use client";
 
-import { FileText, AlertCircle, ChevronRight } from "lucide-react";
+import { FileText, AlertCircle, ChevronRight, History } from "lucide-react";
 import { text } from "stream/consumers";
 
 const BLUE = "#006cb7";
 
 const hrUpdates = [
-  { text: "3 New Staff Onboarded", sub: "→ Today • ITC & Admin and Finance Divisions" },
+  {
+    text: "3 New Staff Onboarded",
+    sub: "→ Today • ITC & Admin and Finance Divisions",
+  },
   {
     text: "Training Completed Successfully",
     sub: "→ Last Week • Admin and Finance Divisions",
@@ -86,7 +89,7 @@ const recentActivities = [
   {
     text: "Resolve IT Support Tickets",
     color: "#f59e0b",
-    sub: "→→ 3 open issues • Focus on network problems",
+    sub: "→ 3 open issues • Focus on network problems",
   },
   {
     text: "Submit Monthly Report",
@@ -195,9 +198,11 @@ export default function HRInsightPanels() {
       <div className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm">
         <div className="flex items-center gap-2 mb-4">
           <div className="w-7 h-7 rounded-lg flex items-center justify-center bg-green-50">
-            <ChevronRight size={13} className="text-green-500" />
+            <History size={13} className="text-green-500" />
           </div>
-          <h3 className="font-bold text-base text-green-600">Recent Activities</h3>
+          <h3 className="font-bold text-base text-green-600">
+            Recent Activities
+          </h3>
         </div>
         <div className="space-y-3">
           {recentActivities.map((c, i) => (
