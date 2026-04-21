@@ -1,6 +1,12 @@
 "use client";
 
-import { ClipboardList, BarChart2, Trophy } from "lucide-react";
+import {
+  ClipboardList,
+  BarChart2,
+  Trophy,
+  Target,
+  TrendingUp,
+} from "lucide-react";
 
 const BLUE = "#006cb7";
 
@@ -26,6 +32,20 @@ const cards = [
     value: 18,
     unit: "Program",
   },
+  {
+    icon: TrendingUp,
+    color: "#f59e0b",
+    label: "Growth Rate",
+    value: "+12%",
+    unit: "YoY",
+  },
+  {
+    icon: Target,
+    color: "#7c3aed",
+    label: "Sector Diversification",
+    value: 3.2,
+    unit: "Index",
+  },
 ];
 
 function PriorityAlignmentCard() {
@@ -40,10 +60,14 @@ function PriorityAlignmentCard() {
           <BarChart2 size={15} style={{ color: BLUE }} />
         </div>
         <p className="text-xs font-semibold text-gray-500 leading-tight">
-          Priority Sector<br />Alignment
+          Priority Sector
+          <br />
+          Alignment
         </p>
       </div>
-      <p className="text-3xl font-bold mb-2" style={{ color: BLUE }}>{pct}%</p>
+      <p className="text-3xl font-bold mb-2" style={{ color: BLUE }}>
+        {pct}%
+      </p>
       <div className="relative h-2.5 bg-gray-100 rounded-full overflow-visible">
         <div
           className="h-full rounded-full"
@@ -55,7 +79,9 @@ function PriorityAlignmentCard() {
           style={{ left: `${pct}%`, transform: "translateX(-50%)" }}
         >
           <div className="w-3.5 h-3.5 rounded-full bg-white border-2 border-emerald-500 shadow-sm" />
-          <span className="text-[9px] font-bold text-emerald-600 mt-0.5">{pct}%</span>
+          <span className="text-[9px] font-bold text-emerald-600 mt-0.5">
+            {pct}%
+          </span>
         </div>
       </div>
     </div>
@@ -81,7 +107,9 @@ export default function StrategySummaryCards() {
           </div>
           <p className="text-4xl font-bold" style={{ color: c.color }}>
             {c.value}{" "}
-            <span className="text-base font-medium text-gray-400">{c.unit}</span>
+            <span className="text-base font-medium text-gray-400">
+              {c.unit}
+            </span>
           </p>
         </div>
       ))}

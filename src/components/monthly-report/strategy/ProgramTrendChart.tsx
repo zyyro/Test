@@ -20,7 +20,6 @@ import {
   ResponsiveContainer,
   ReferenceLine,
   Legend,
-  
 } from "recharts";
 
 const BLUE = "#006cb7";
@@ -102,33 +101,35 @@ const summaryStats = [
 ];
 
 const overallBullets = [
-  { text: "Total grows over time", color: "#f59e0b" },
-  { text: "Major Improvement", color: BLUE },
-  { text: "Major Improvement", color: "#ef4444" },
-  { text: "End Higher (~38–43)", color: "#06b6d4" },
-  { text: "End Higher (~38–43)", color: "#06b6d4" },
-  { text: "Sustained Improvement", color: "#06b6d4" },
+  { text: "Upward trend", color: "#f59e0b" },
+  { text: "Strong growth", color: BLUE },
+  { text: "October spike", color: "#ef4444" },
+  { text: "Ends higher (~38–43)", color: "#06b6d4" },
+  { text: "Minor fluctuations", color: "#22c55e" },
+  { text: "Steady improvement", color: "#8b5cf6" },
+  { text: "Late-year acceleration", color: "#f97316" },
+  { text: "Consistent performance", color: "#14b8a6" },
 ];
 const recommendations = [
   {
-    icon: Target,
-    color: "#7c3aed",
-    text: "Diversify program allocation to reduce top-heavy risk",
-  },
-  {
     icon: TrendingUp,
     color: "#10b981",
-    text: "Scale Gap Sector investment — currently at only 25%",
+    text: "Accelerate expansion in high-growth sectors during peak months",
   },
   {
-    icon: AlertTriangle,
-    color: "#f59e0b",
-    text: "Monitor Balance Middle Sectors to prevent decline",
+    icon: Target,
+    color: "#7c3aed",
+    text: "Replicate successful program models across other sectors",
   },
   {
     icon: Lightbulb,
     color: BLUE,
-    text: "Consider pilot programs in underserved gap areas",
+    text: "Improve program efficiency through better resource allocation",
+  },
+  {
+    icon: AlertTriangle,
+    color: "#f59e0b",
+    text: "Strengthen monitoring to track performance and prevent drop-offs",
   },
 ];
 export default function ProgramTrendChart() {
@@ -316,9 +317,9 @@ export default function ProgramTrendChart() {
             with major October spike
           </p>
         </div>
-        <div className="grid grid-cols-3 gap-x-6 gap-y-2">
+        <div className="grid grid-cols-4 gap-x-6 gap-y-2">
           {overallBullets.map((b, i) => (
-            <p key={i} className="text-lg flex items-center gap-2">
+            <p key={i} className="text-sm flex items-center gap-2">
               <span
                 className="w-2 h-2 rounded-full shrink-0"
                 style={{ background: b.color }}
@@ -334,7 +335,7 @@ export default function ProgramTrendChart() {
             <Lightbulb size={13} className="text-amber-500" />
           </div>
           <p className="text-lg font-bold text-amber-600">
-            Strategic Recommendations
+            Execution / Growth optimization
           </p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">

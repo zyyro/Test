@@ -5,6 +5,7 @@ import KpiCards from "@/components/monthly-report/ict-report/KpiCards";
 import ChartsSection from "@/components/monthly-report/ict-report/ChartsSection";
 import SystemTable from "@/components/monthly-report/ict-report/SystemTable";
 import DigitalInfrastructure from "@/components/monthly-report/ict-report/DigitalInfrastructure";
+
 import {
   ImprovementsPanel,
   ChallengesPanel,
@@ -35,7 +36,7 @@ export default function IctReportPage() {
       <ChartsSection />
 
       {/* ── System Table + Digital Infrastructure ── */}
-      <div className="flex gap-5 mb-8 flex-wrap xl:flex-nowrap">
+      <div className="grid grid-cols-1 gap-5 mb-8 xl:grid-cols-[2fr_1fr]">
         <SystemTable />
         <DigitalInfrastructure />
       </div>

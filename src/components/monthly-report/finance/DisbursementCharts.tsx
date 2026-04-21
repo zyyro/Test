@@ -14,7 +14,6 @@ import {
   Cell,
   Legend,
 } from "recharts";
-import { text } from "stream/consumers";
 
 const BLUE = "#006cb7";
 
@@ -37,6 +36,7 @@ const sectorBudget = [
   { name: "Agriculture", value: 20, color: "#ef4444" },
   { name: "Other", value: 5, color: "#10b981" },
 ];
+
 const sectorBudgetLeft = [
   { text: "Technical", sub: "30%", color: "#7c3aed" },
   { text: "Tourism", sub: "25%", color: "#f59e0b" },
@@ -53,7 +53,7 @@ const tooltipStyle = {
 };
 
 function yTickK(v: number) {
-  return v >= 1000 ? `${(v / 1000).toFixed(0)}K` : v;
+  return v >= 1000 ? `${(v / 1000).toFixed(0)}K` : `${v}`;
 }
 
 function renderLabel({ cx, cy, midAngle, outerRadius, name, value }: any) {
@@ -61,6 +61,7 @@ function renderLabel({ cx, cy, midAngle, outerRadius, name, value }: any) {
   const r = outerRadius + 30;
   const x = cx + r * Math.cos(-midAngle * RADIAN);
   const y = cy + r * Math.sin(-midAngle * RADIAN);
+
   return (
     <text
       x={x}
@@ -75,101 +76,106 @@ function renderLabel({ cx, cy, midAngle, outerRadius, name, value }: any) {
   );
 }
 
-export default function DisbursementCharts() {
+function FinancialHighlights() {
+  const highlights = [
+    { label: "Approved Budget", value: "$8,500,000" },
+    { label: "Disbursed Amount", value: "$5,200,000" },
+    { label: "Remaining Balance", value: "$3,300,000" },
+    { label: "Pending Approvals", value: "$1,200,000" },
+    { label: "Utilization Rate", value: "61%" },
+  ];
+
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-6">
-      {/* Monthly Disbursement */}
-      <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
-        <h3 className="font-bold text-base mb-4" style={{ color: BLUE }}>
-          Monthly Disbursement
-        </h3>
-        <ResponsiveContainer width="100%" height={220}>
-          <ComposedChart
-            data={disbursementData}
-            margin={{ left: -10, right: 10 }}
+    <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm h-full">
+      <h3 className="font-bold text-base mb-4" style={{ color: BLUE }}>
+        Financial Highlights
+      </h3>
+
+      <div className="space-y-4">
+        {highlights.map((item, i) => (
+          <div
+            key={i}
+            className="flex items-center justify-between border-b border-gray-100 pb-3"
           >
-            <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-            <XAxis
-              dataKey="month"
-              tick={{ fontSize: 11 }}
-              axisLine={false}
-              tickLine={false}
-            />
-            <YAxis
-              tick={{ fontSize: 11 }}
-              axisLine={false}
-              tickLine={false}
-              tickFormatter={yTickK}
-            />
-            <Tooltip
-              contentStyle={tooltipStyle}
-              formatter={(v: number) => [`$${yTickK(v)}`, ""]}
-            />
-            <Bar
-              dataKey="disbursed"
-              name="Disbursed"
-              fill={BLUE}
-              radius={[4, 4, 0, 0]}
-              barSize={22}
-            />
-            <Line
-              type="monotone"
-              dataKey="cumulative"
-              name="Trend"
-              stroke="#06b6d4"
-              strokeWidth={2.5}
-              dot={{ r: 3.5, fill: "white", stroke: "#06b6d4", strokeWidth: 2 }}
-              activeDot={{ r: 5 }}
-            />
-          </ComposedChart>
-        </ResponsiveContainer>
+            <span className="text-sm text-gray-500">{item.label}</span>
+            <span className="text-sm font-bold text-gray-800">
+              {item.value}
+            </span>
+          </div>
+        ))}
       </div>
 
-      {/* Budget by Sector */}
-      {/* <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
-        <h3 className="font-bold text-base mb-4" style={{ color: BLUE }}>
-          Budget by Sector
-        </h3>
-        <div className="grid grid-cols-2 gap-4 mb-4">
-          <ResponsiveContainer width="120%" height={220}>
-            <PieChart>
-              <Pie
-                data={sectorBudget}
-                cx="50%"
-                cy="50%"
-                outerRadius={95}
-                innerRadius={50}
-                dataKey="value"
-                labelLine={true}
-                label={renderLabel}
-              >
-                {sectorBudget.map((entry, i) => (
-                  <Cell key={i} fill={entry.color} />
-                ))}
-              </Pie>
+      <div className="mt-5 p-4 rounded-xl bg-emerald-50 border border-emerald-100">
+        <p className="text-sm font-semibold text-emerald-700">Report Insight</p>
+        <p className="text-xs text-emerald-600 mt-1">
+          Budget utilization is progressing steadily, with strong disbursement
+          performance and controlled remaining balance.
+        </p>
+      </div>
+    </div>
+  );
+}
+
+export default function DisbursementCharts() {
+  return (
+    <div className="space-y-6 mb-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+        {/* Monthly Disbursement */}
+        <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
+          <h3 className="font-bold text-base mb-4" style={{ color: BLUE }}>
+            Monthly Disbursement
+          </h3>
+
+          <ResponsiveContainer width="100%" height={220}>
+            <ComposedChart
+              data={disbursementData}
+              margin={{ top: 10, right: 10, left: -10, bottom: 0 }}
+            >
+              <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+              <XAxis
+                dataKey="month"
+                tick={{ fontSize: 11 }}
+                axisLine={false}
+                tickLine={false}
+              />
+              <YAxis
+                tick={{ fontSize: 11 }}
+                axisLine={false}
+                tickLine={false}
+                tickFormatter={yTickK}
+              />
               <Tooltip
                 contentStyle={tooltipStyle}
-                formatter={(v: number) => [`${v}%`, "Share"]}
+                formatter={(value: number, name: string) => [
+                  `$${value.toLocaleString()}`,
+                  name === "disbursed" ? "Disbursed" : "Trend",
+                ]}
               />
-            </PieChart>
+              <Bar
+                dataKey="disbursed"
+                fill={BLUE}
+                radius={[4, 4, 0, 0]}
+                barSize={22}
+              />
+              <Line
+                type="monotone"
+                dataKey="cumulative"
+                stroke="#06b6d4"
+                strokeWidth={2.5}
+                dot={{
+                  r: 3.5,
+                  fill: "white",
+                  stroke: "#06b6d4",
+                  strokeWidth: 2,
+                }}
+                activeDot={{ r: 5 }}
+              />
+            </ComposedChart>
           </ResponsiveContainer>
-          <div className="ml-15 p-5">
-            {sectorBudgetLeft.map((item, i) => (
-              <li
-                key={i}
-                className="flex items-start mt-3 gap-2 text-lg text-gray-600"
-              >
-                <span
-                  className="w-2.5 h-2.5 rounded-full mt-3 shrink-0"
-                  style={{ backgroundColor: item.color }}
-                />
-                <span>{item.text}</span>
-                <span className="font-bold text-gray-800">{item.sub}</span>
-              </li>
-            ))}
-          </div>
         </div>
-      </div> */}
+
+        <FinancialHighlights />
+      </div>
     </div>
   );
 }

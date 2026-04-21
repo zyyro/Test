@@ -84,15 +84,15 @@ const kpiCards = [
 // ];
 
 const salaryTrend = [
-  { month: "Apr", salary: 4200 },
-  { month: "May", salary: 4800 },
-  { month: "Jun", salary: 5800 },
-  { month: "Jul", salary: 5200 },
-  { month: "Aug", salary: 5500 },
-  { month: "Sep", salary: 5300 },
-  { month: "Oct", salary: 5600 },
-  { month: "Nov", salary: 5800 },
-  { month: "Dec", salary: 6400 },
+  { month: "Apr", salary: 4212 },
+  { month: "May", salary: 4815 },
+  { month: "Jun", salary: 5874 },
+  { month: "Jul", salary: 5276 },
+  { month: "Aug", salary: 5575 },
+  { month: "Sep", salary: 5309 },
+  { month: "Oct", salary: 5620 },
+  { month: "Nov", salary: 5852 },
+  { month: "Dec", salary: 6234 },
 ];
 
 const expenseBreakdown = [
@@ -149,44 +149,46 @@ export default function OperationalExpenses() {
 
       {/* Op KPI cards */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
-            {kpiCards.map((k, i) => (
+        {kpiCards.map((k, i) => (
+          <div
+            key={i}
+            className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-md transition-shadow"
+          >
+            <div className="flex items-center gap-3">
               <div
-                key={i}
-                className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-md transition-shadow"
+                className="w-11 h-11 rounded-2xl flex items-center justify-center shrink-0"
+                style={{ background: `${k.color}15` }}
               >
-                <div className="flex items-center gap-3">
-                  <div
-                    className="w-11 h-11 rounded-2xl flex items-center justify-center shrink-0"
-                    style={{ background: `${k.color}15` }}
-                  >
-                    <k.icon size={20} style={{ color: k.color }} />
-                  </div>
-      
-                  <p className="text-sm font-semibold text-gray-500">{k.label}</p>
-                </div>
-      
-                <p
-                  className="text-4xl mt-3 font-bold leading-none mb-2"
-                  style={{ color: k.color }}
-                >
-                  {k.value}
-                </p>
-                {k.up !== null ? (
-                  <span
-                    className={`flex items-center gap-1 text-xs font-bold ${k.up ? "text-emerald-500" : "text-red-500"}`}
-                  >
-                    {k.up ? <TrendingUp size={11} /> : <TrendingDown size={11} />}
-                    {k.sub}
-                  </span>
-                ) : (
-                  <span className="text-xs mt-3 font-medium text-gray-400">{k.sub}</span>
-                )}
+                <k.icon size={20} style={{ color: k.color }} />
               </div>
-            ))}
+
+              <p className="text-sm font-semibold text-gray-500">{k.label}</p>
+            </div>
+
+            <p
+              className="text-4xl mt-3 font-bold leading-none mb-2"
+              style={{ color: k.color }}
+            >
+              {k.value}
+            </p>
+            {k.up !== null ? (
+              <span
+                className={`flex items-center gap-1 text-xs font-bold ${k.up ? "text-emerald-500" : "text-red-500"}`}
+              >
+                {k.up ? <TrendingUp size={11} /> : <TrendingDown size={11} />}
+                {k.sub}
+              </span>
+            ) : (
+              <span className="text-xs mt-3 font-medium text-gray-400">
+                {k.sub}
+              </span>
+            )}
           </div>
+        ))}
+      </div>
 
       {/* Charts row */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mb-6">
         {/* Monthly Salary Trend */}
         <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
           <h3 className="font-bold text-base mb-4" style={{ color: BLUE }}>
@@ -239,7 +241,7 @@ export default function OperationalExpenses() {
             <PieChart>
               <Pie
                 data={expenseBreakdown}
-                cx="20%"
+                cx="50%"
                 cy="50%"
                 outerRadius={100}
                 dataKey="value"

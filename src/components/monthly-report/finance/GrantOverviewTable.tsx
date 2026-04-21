@@ -199,14 +199,14 @@ export default function GrantOverviewTable() {
       </div>
 
       {/* Budget by Sector (30%) */}
-      <div className="w-full xl:w-[30%] bg-white rounded-2xl p-6 border mb-6 border-gray-100 shadow-sm">
+      <div className="w-full xl:w-[30%] bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
         <h3 className="font-bold text-base mb-4" style={{ color: BLUE }}>
           Budget by Sector
         </h3>
 
         <div className="grid grid-cols-2 gap-4 items-center">
           {/* Chart */}
-          <ResponsiveContainer width="130%" height={300}>
+          <ResponsiveContainer width="100%" height={220}>
             <PieChart>
               <Pie
                 data={sectorBudget}
@@ -237,10 +237,10 @@ export default function GrantOverviewTable() {
                 className="flex items-center mt-3 gap-2 text-sm text-gray-600"
               >
                 <span
-                  className="w-2.5 h-2.5 ml-12 rounded-full shrink-0"
+                  className="w-2.5 h-2.5 rounded-full shrink-0"
                   style={{ backgroundColor: item.color }}
                 />
-                <span className="flex-1 ml-4">{item.text}</span>
+                <span className="flex-1">{item.text}</span>
                 <span className="font-bold text-gray-800">{item.sub}</span>
               </li>
             ))}
