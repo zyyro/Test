@@ -97,10 +97,10 @@ const salaryTrend = [
 ];
 
 const expenseBreakdown = [
-  { name: "Salaries", value: 50, color: "#3b82f6" },
-  { name: "IT Casings", value: 15, color: "#ef4444" },
-  { name: "IT & Equipment", value: 15, color: "#f59e0b" },
-  { name: "Office Costs", value: 20, color: "#10b981" },
+  { name: "Salaries", value: 50, color: "#053570" },
+  { name: "IT Casings", value: 15, color: "#095FC8" },
+  { name: "IT & Equipment", value: 15, color: "#2784F5" },
+  { name: "Office Costs", value: 20, color: "#8FBFFA" },
 ];
 
 const tooltipStyle = {

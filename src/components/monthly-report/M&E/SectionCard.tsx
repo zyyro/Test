@@ -49,9 +49,9 @@ const OUTPUT_ROWS = [
 ];
 
 const bars = [
-  { label: "Female:", pct: 45 },
-  { label: "Youth:", pct: 52 },
-  { label: "Disabled:", pct: 6 },
+  { label: "Female:", pct: 45, color: "#3E0570" },
+  { label: "Youth:", pct: 52, color: "#6F09C8" },
+  { label: "Disabled:", pct: 20, color: "#9527F5" },
 ];
 
 // ─── Hooks ───────────────────────────────────────────────────────────────────
@@ -266,10 +266,10 @@ function OutputPanel() {
             <span className="w-9 text-[12px] font-semibold uppercase tracking-[0.2em] text-violet-600">
               {b.pct}%
             </span>
-            <div className="flex-1 h-4 bg-violet-100 rounded-full overflow-hidden">
+            <div className="flex-1 h-4 bg-gray-100 rounded-full overflow-hidden">
               <div
                 className="h-full bg-violet-500 rounded-full transition-all duration-700"
-                style={{ width: `${b.pct}%` }}
+                style={{ width: `${b.pct}%`, backgroundColor: b.color }}
               />
             </div>
           </div>

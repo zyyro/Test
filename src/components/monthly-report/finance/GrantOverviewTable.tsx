@@ -7,18 +7,18 @@ import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
 const BLUE = "#006cb7";
 
 const sectorBudget = [
-  { name: "Technical", value: 30, color: "#7c3aed" },
-  { name: "Tourism", value: 25, color: "#f59e0b" },
-  { name: "Digital", value: 20, color: "#3b82f6" },
-  { name: "Agriculture", value: 20, color: "#ef4444" },
-  { name: "Other", value: 5, color: "#10b981" },
+  { name: "Technical", value: 30, color: "#C82909" },
+  { name: "Tourism", value: 25, color: "#F4320B" },
+  { name: "Digital", value: 20, color: "#F54927" },
+  { name: "Agriculture", value: 20, color: "#F87C63" },
+  { name: "Other", value: 5, color: "#FCC6BB" },
 ];
 const sectorBudgetLeft = [
-  { text: "Technical", sub: "30%", color: "#7c3aed" },
-  { text: "Tourism", sub: "25%", color: "#f59e0b" },
-  { text: "Digital", sub: "20%", color: "#3b82f6" },
-  { text: "Agriculture", sub: "20%", color: "#ef4444" },
-  { text: "Other", sub: "5%", color: "#10b981" },
+  { text: "Technical", sub: "30%", color: "#C82909" },
+  { text: "Tourism", sub: "25%", color: "#F4320B" },
+  { text: "Digital", sub: "20%", color: "#F54927" },
+  { text: "Agriculture", sub: "20%", color: "#F87C63" },
+  { text: "Other", sub: "5%", color: "#FCC6BB" },
 ];
 const tooltipStyle = {
   borderRadius: 12,
@@ -212,7 +212,7 @@ export default function GrantOverviewTable() {
                 data={sectorBudget}
                 cx="50%"
                 cy="55%"
-                outerRadius={110}
+                outerRadius={100}
                 innerRadius={50}
                 dataKey="value"
                 labelLine={false}

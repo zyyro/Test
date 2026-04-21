@@ -1,9 +1,8 @@
 "use client";
 
 import {
-  ComposedChart,
+  BarChart,
   Bar,
-  Line,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -11,8 +10,6 @@ import {
   ResponsiveContainer,
   Legend,
 } from "recharts";
-
-const BLUE = "#006cb7";
 
 const attendanceData = [
   { month: "Jan", attendance: 48, leaves: 12, late: 8, rate: 82 },
@@ -29,157 +26,191 @@ const attendanceData = [
   { month: "Dec", attendance: 43, leaves: 11, late: 8, rate: 80 },
 ];
 
-const lines = [
+const chartData = attendanceData.map((item) => {
+  const total = item.attendance + item.leaves + item.late;
+
+  return {
+    ...item,
+    attendancePct: (item.attendance / total) * 100,
+    leavesPct: (item.leaves / total) * 100,
+    latePct: (item.late / total) * 100,
+  };
+});
+
+const avgRate = Math.round(
+  attendanceData.reduce((sum, item) => sum + item.rate, 0) / attendanceData.length
+);
+
+const peakItem = attendanceData.reduce((prev, curr) =>
+  curr.rate > prev.rate ? curr : prev
+);
+
+const lowestItem = attendanceData.reduce((prev, curr) =>
+  curr.rate < prev.rate ? curr : prev
+);
+
+const pills = [
   {
     label: "Avg",
-    value: "88%",
-    extra: null,
-    color: "blue",
+    value: `${avgRate}%`,
+    extra: "",
+    classes:
+      "bg-blue-50 border-blue-200 text-blue-700",
+    dot: "bg-blue-600",
   },
   {
     label: "Peak",
-    value: "90%",
-    extra: "Sep",
-    color: "green",
+    value: `${peakItem.rate}%`,
+    extra: `(${peakItem.month})`,
+    classes:
+      "bg-green-50 border-green-200 text-green-700",
+    dot: "bg-green-600",
   },
   {
     label: "Lowest",
-    value: "78%",
-    extra: "Apr",
-    color: "orange",
-  },
-] as const;
-
-const colorMap = {
-  blue: {
-    bg: "bg-blue-50",
-    border: "border-blue-200",
-    text: "text-blue-700",
-    dot: "bg-blue-600",
-  },
-  green: {
-    bg: "bg-green-50",
-    border: "border-green-200",
-    text: "text-green-700",
-    dot: "bg-green-600",
-  },
-  orange: {
-    bg: "bg-orange-50",
-    border: "border-orange-200",
-    text: "text-orange-600",
+    value: `${lowestItem.rate}%`,
+    extra: `(${lowestItem.month})`,
+    classes:
+      "bg-orange-50 border-orange-200 text-orange-600",
     dot: "bg-orange-500",
   },
-} as const;
+];
 
-const tooltipStyle = {
-  borderRadius: 12,
-  border: "none",
-  boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
-  fontSize: 12,
+type TooltipPayloadItem = {
+  payload: {
+    month: string;
+    attendance: number;
+    leaves: number;
+    late: number;
+    rate: number;
+    attendancePct: number;
+    leavesPct: number;
+    latePct: number;
+  };
 };
+
+function CustomTooltip({
+  active,
+  payload,
+  label,
+}: {
+  active?: boolean;
+  payload?: TooltipPayloadItem[];
+  label?: string;
+}) {
+  if (!active || !payload || !payload.length) return null;
+
+  const data = payload[0].payload;
+
+  return (
+    <div
+      style={{
+        background: "#fff",
+        border: "none",
+        borderRadius: 16,
+        boxShadow: "0 8px 24px rgba(0,0,0,0.12)",
+        padding: "12px 14px",
+        fontSize: 13,
+      }}
+    >
+      <div style={{ fontWeight: 600, marginBottom: 8 }}>{label}</div>
+
+      <div style={{ color: "#006cb7", marginBottom: 6 }}>
+        Attendance: {data.attendance} ({data.attendancePct.toFixed(0)}%)
+      </div>
+
+      <div style={{ color: "#006cb7", marginBottom: 6 }}>
+        Attendance Rate: {data.rate}%
+      </div>
+
+      <div style={{ color: "#ef4444", marginBottom: 6 }}>
+        Late: {data.late} ({data.latePct.toFixed(0)}%)
+      </div>
+
+      <div style={{ color: "#f59e0b" }}>
+        Leaves: {data.leaves} ({data.leavesPct.toFixed(0)}%)
+      </div>
+    </div>
+  );
+}
 
 export default function AttendanceTrend() {
   return (
-    <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm h-full flex flex-col ">
+    <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm h-full">
       <div className="flex items-center justify-between mb-5 flex-wrap gap-3">
         <h2 className="font-bold text-base" style={{ color: "#006cb7" }}>
           Attendance Trend
         </h2>
-        <div className="flex gap-3 flex-wrap mb-3">
-          {lines.map((item, i) => {
-            const c = colorMap[item.color];
-            return (
-              <div
-                key={i}
-                className={`flex items-center gap-2 px-3 py-1.5 rounded-full border text-sm font-medium ${c.bg} ${c.border} ${c.text}`}
-              >
-                <div className={`w-2 h-2 rounded-full ${c.dot}`} />
 
-                <span>{item.label}</span>
-
-                <span className="font-semibold">
-                  {item.value}
-                  {item.extra && (
-                    <span className="ml-1 text-xs opacity-70">
-                      ({item.extra})
-                    </span>
-                  )}
-                </span>
-              </div>
-            );
-          })}
+        <div className="flex gap-3 flex-wrap">
+          {pills.map((item, i) => (
+            <div
+              key={i}
+              className={`flex items-center gap-2 px-4 py-2 rounded-full border text-sm font-medium ${item.classes}`}
+            >
+              <div className={`w-2.5 h-2.5 rounded-full ${item.dot}`} />
+              <span>{item.label}</span>
+              <span className="font-semibold">
+                {item.value}
+                {item.extra && (
+                  <span className="ml-1 text-xs opacity-70">{item.extra}</span>
+                )}
+              </span>
+            </div>
+          ))}
         </div>
       </div>
 
-      <ResponsiveContainer width="100%" height={260}>
-        <ComposedChart data={attendanceData} margin={{ left: -10, right: 10 }}>
+      <ResponsiveContainer width="100%" height={300}>
+        <BarChart data={chartData} barCategoryGap="22%">
           <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+
           <XAxis
             dataKey="month"
             tick={{ fontSize: 11 }}
             axisLine={false}
             tickLine={false}
           />
+
           <YAxis
-            yAxisId="left"
             tick={{ fontSize: 10 }}
             axisLine={false}
             tickLine={false}
-            tickFormatter={(v) => `${v}%`}
-            domain={[0, 90]}
+            domain={[0, "auto"]}
           />
-          <YAxis
-            yAxisId="right"
-            orientation="right"
-            tick={{ fontSize: 10 }}
-            axisLine={false}
-            tickLine={false}
-            domain={[0, 90]}
-          />
-          <Tooltip contentStyle={tooltipStyle} />
+
+          <Tooltip content={<CustomTooltip />} />
+
           <Legend
             iconType="circle"
             iconSize={9}
             wrapperStyle={{ fontSize: 12 }}
           />
+
           <Bar
-            yAxisId="right"
             dataKey="attendance"
-            name="Attendance 88%"
-            fill={BLUE}
-            radius={[3, 3, 0, 0]}
-            barSize={18}
-            stackId="a"
+            name="Attendance"
+            fill="#006cb7"
+            radius={[4, 4, 0, 0]}
+            barSize={14}
           />
+
           <Bar
-            yAxisId="right"
-            dataKey="leaves"
-            name="Leaves 8%"
-            fill="#f59e0b"
-            radius={[0, 0, 0, 0]}
-            barSize={18}
-            stackId="a"
-          />
-          <Bar
-            yAxisId="right"
             dataKey="late"
-            name="Late 6%"
+            name="Late"
             fill="#ef4444"
-            radius={[3, 3, 0, 0]}
-            barSize={18}
-            stackId="a"
+            radius={[4, 4, 0, 0]}
+            barSize={14}
           />
-          {/* <Line
-            yAxisId="left"
-            type="monotone"
-            dataKey="rate"
-            name="Attendance %"
-            stroke={BLUE}
-            strokeWidth={2.5}
-            dot={{ r: 3.5, fill: "white", stroke: BLUE, strokeWidth: 2 }}
-            activeDot={{ r: 5 }}
-          /> */}
-        </ComposedChart>
+
+          <Bar
+            dataKey="leaves"
+            name="Leaves"
+            fill="#f59e0b"
+            radius={[4, 4, 0, 0]}
+            barSize={14}
+          />
+        </BarChart>
       </ResponsiveContainer>
     </div>
   );

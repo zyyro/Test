@@ -46,7 +46,7 @@ const dashboardData: {
   },
   {
     id: "pr",
-    title: "PR",
+    title: "Public Relations",
     badge: "+8.4%",
     badgeColor: "green",
     icon: Megaphone,
@@ -59,7 +59,7 @@ const dashboardData: {
   },
   {
     id: "admin",
-    title: "Admin",
+    title: "Admin HR",
     badge: "-0.5%",
     badgeColor: "red",
     icon: Users,
@@ -85,7 +85,7 @@ const dashboardData: {
   },
   {
     id: "me",
-    title: "M & E",
+    title: "Monitoring & Evaluation",
     badge: "+3.2%",
     badgeColor: "green",
     icon: BarChart2,
@@ -98,7 +98,7 @@ const dashboardData: {
   },
   {
     id: "itc",
-    title: "ITC",
+    title: "ICT",
     badge: "+0.9%",
     badgeColor: "green",
     icon: Monitor,

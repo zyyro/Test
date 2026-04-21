@@ -13,18 +13,20 @@ const total =
   completionData.completed + completionData.inProgress + completionData.pending;
 
 const categories = [
-  { label: "Completed", value: completionData.completed, color: "#22c55e" },
-  { label: "In Progress", value: completionData.inProgress, color: "#006cb7" },
-  { label: "Pending", value: completionData.pending, color: "#f59e0b" },
+  { label: "Completed", value: completionData.completed, color: "#053570" },
+  { label: "In Progress", value: completionData.inProgress, color: "#0B74F4" },
+  { label: "Pending", value: completionData.pending, color: "#8FBFFA" },
 ];
 
 const systemPerformance = [
-  { label: "Skill Matching", value: 83, color: "#22c55e" },
-  { label: "Survey", value: 67, color: "#006cb7" },
-  { label: "Skill Voucher", value: 58, color: "#f97316" },
-  { label: "HR System", value: 58, color: "#f59e0b" },
-  { label: "Joint Training", value: 54, color: "#ef4444" },
-  { label: "E-Learning", value: 64, color: "#6366f1" },
+  { label: "Skill Matching", value: 83, color: "#ef4444" }, // red
+  { label: "Survey", value: 67, color: "#f97316" }, // orange
+  { label: "Skill Voucher", value: 58, color: "#eab308" }, // yellow
+  { label: "HR System", value: 58, color: "#84cc16" }, // green
+  { label: "Joint Training", value: 54, color: "#06b6d4" }, // cyan
+  { label: "E-Learning", value: 64, color: "#3b82f6" },
+  { label: "Skill Framework", value: 56, color: "#a855f7" }, // purple
+  { label: "My Skill, My Job", value: 76, color: "#F52779" },
 ];
 
 function DonutChart({ percentage }: { percentage: number }) {
@@ -62,7 +64,7 @@ function DonutChart({ percentage }: { percentage: number }) {
               strokeWidth={strokeWidth}
               strokeDasharray={`${dash} ${circumference}`}
               strokeDashoffset={-currentOffset}
-              strokeLinecap="round"
+              strokeLinecap="butt"
               className="transition-all duration-700"
             />
           );
