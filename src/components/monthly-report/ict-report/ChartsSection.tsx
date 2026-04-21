@@ -31,7 +31,7 @@ const usageTrend = [
 ];
 
 const devData = [
-  { name: "Skill Match", eLearning: 4200, Training: 3100, Survey: 2800 },
+  { name: "Skill Matching", eLearning: 4200, Training: 3100, Survey: 2800 },
   { name: "Survey", eLearning: 3800, Training: 2900, Survey: 3200 },
   { name: "Skill Voucher", eLearning: 5100, Training: 4200, Survey: 3600 },
   { name: "PMS", eLearning: 3200, Training: 2700, Survey: 2400 },

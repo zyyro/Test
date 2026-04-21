@@ -1,15 +1,27 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 const DIVISIONS = [
   "All Division",
   "Strategy",
   "PR",
-  "Admin And Finance",
+  "Admin",
+  "Finance",
   "M & E",
   "ITC",
 ];
+
+const DIVISION_ROUTES: Record<string, string> = {
+  "All Division": "/Monthly-Report-List",
+  Strategy: "/Monthly-Report-List/Strategy",
+  PR: "/Monthly-Report-List/PR",
+  Finance: "/Monthly-Report-List/Admin-and-Finance/Finance",
+  "Admin ": "/Monthly-Report-List/Admin-and-Finance/AdminReport",
+  "M & E": "/Monthly-Report-List/M&E",
+  ITC: "/Monthly-Report-List/IctReport",
+};
 const MONTHS = [
   "January",
   "February",
@@ -24,9 +36,8 @@ const MONTHS = [
   "November",
   "December",
 ];
-const YEARS = ["2024", "2025", "2026", "2027"];
 
-// ─── Icons ────────────────────────────────────────────────────────────────────
+const YEARS = ["2024", "2025", "2026", "2027"];
 
 function CalendarIcon() {
   return (
@@ -143,8 +154,6 @@ function ClockIcon() {
   );
 }
 
-// ─── Dropdown ─────────────────────────────────────────────────────────────────
-
 interface DropdownProps {
   value: string;
   onChange: (value: string) => void;
@@ -166,8 +175,9 @@ function Dropdown({
 
   useEffect(() => {
     function onOutside(e: MouseEvent) {
-      if (ref.current && !ref.current.contains(e.target as Node))
+      if (ref.current && !ref.current.contains(e.target as Node)) {
         setOpen(false);
+      }
     }
     document.addEventListener("mousedown", onOutside);
     return () => document.removeEventListener("mousedown", onOutside);
@@ -184,6 +194,7 @@ function Dropdown({
   return (
     <div ref={ref} style={{ position: "relative", minWidth }}>
       <button
+        type="button"
         onClick={handleOpen}
         style={{
           display: "flex",
@@ -204,20 +215,6 @@ function Dropdown({
           boxShadow: open
             ? "0 0 0 3px rgba(26,111,196,0.12)"
             : "0 1px 2px rgba(0,0,0,0.05)",
-        }}
-        onMouseEnter={(e) => {
-          if (!open) {
-            (e.currentTarget as HTMLButtonElement).style.borderColor =
-              "#a0b8dd";
-            (e.currentTarget as HTMLButtonElement).style.background = "#f8faff";
-          }
-        }}
-        onMouseLeave={(e) => {
-          if (!open) {
-            (e.currentTarget as HTMLButtonElement).style.borderColor =
-              "#dde3ef";
-            (e.currentTarget as HTMLButtonElement).style.background = "#ffffff";
-          }
         }}
       >
         <span
@@ -252,15 +249,8 @@ function Dropdown({
             padding: "6px",
             margin: 0,
             listStyle: "none",
-            animation: "dropIn 0.18s cubic-bezier(0.4,0,0.2,1)",
           }}
         >
-          <style>{`
-            @keyframes dropIn {
-              from { opacity: 0; transform: translateY(-6px) scale(0.98); }
-              to   { opacity: 1; transform: translateY(0) scale(1); }
-            }
-          `}</style>
           {options.map((opt) => {
             const isSelected = opt === value;
             return (
@@ -281,17 +271,6 @@ function Dropdown({
                   color: isSelected ? "#1a6fc4" : "#2d3a52",
                   background: isSelected ? "#eef4ff" : "transparent",
                   fontWeight: isSelected ? 600 : 400,
-                  transition: "background 0.13s",
-                }}
-                onMouseEnter={(e) => {
-                  if (!isSelected)
-                    (e.currentTarget as HTMLLIElement).style.background =
-                      "#f4f7fd";
-                }}
-                onMouseLeave={(e) => {
-                  if (!isSelected)
-                    (e.currentTarget as HTMLLIElement).style.background =
-                      "transparent";
                 }}
               >
                 {opt}
@@ -305,9 +284,16 @@ function Dropdown({
   );
 }
 
-// ─── Main Component ───────────────────────────────────────────────────────────
-
 export default function MonthlyReportHeader() {
+  const router = useRouter();
+  const handleDivisionChange = (value: string) => {
+    setDivision(value);
+
+    const nextPage = DIVISION_ROUTES[value];
+    if (nextPage) {
+      router.push(nextPage);
+    }
+  };
   const [division, setDivision] = useState("All Division");
   const [month, setMonth] = useState("March");
   const [year, setYear] = useState("2026");
@@ -317,6 +303,17 @@ export default function MonthlyReportHeader() {
     hour: "2-digit",
     minute: "2-digit",
   });
+
+  // const handleDivisionChange = (value: string) => {
+  //   setDivision(value);
+
+  //   const slug =
+  //     value === "All Division"
+  //       ? ""
+  //       : value.toLowerCase().replace(/&/g, "").replace(/\s+/g, "-");
+
+  //   router.push(slug ? `/divisions/${slug}` : "/divisions");
+  // };
 
   return (
     <div
@@ -332,7 +329,6 @@ export default function MonthlyReportHeader() {
         boxShadow: "0 4px 20px rgba(26,111,196,0.25)",
       }}
     >
-      {/* Left — title + subtitle */}
       <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
         <div
           style={{
@@ -349,6 +345,7 @@ export default function MonthlyReportHeader() {
         >
           <CalendarIcon />
         </div>
+
         <div>
           <div
             style={{
@@ -359,8 +356,9 @@ export default function MonthlyReportHeader() {
               lineHeight: 1.2,
             }}
           >
-            Monthly Report
+            Quarterly Report
           </div>
+
           <div
             style={{
               display: "flex",
@@ -381,6 +379,7 @@ export default function MonthlyReportHeader() {
               <BuildingIcon />
               {division}
             </span>
+
             <span
               style={{
                 width: "3px",
@@ -390,6 +389,7 @@ export default function MonthlyReportHeader() {
                 display: "inline-block",
               }}
             />
+
             <span
               style={{
                 display: "flex",
@@ -406,7 +406,6 @@ export default function MonthlyReportHeader() {
         </div>
       </div>
 
-      {/* Right — dropdowns */}
       <div
         style={{
           display: "flex",
@@ -417,7 +416,7 @@ export default function MonthlyReportHeader() {
       >
         <Dropdown
           value={division}
-          onChange={setDivision}
+          onChange={handleDivisionChange}
           options={DIVISIONS}
           minWidth={140}
         />

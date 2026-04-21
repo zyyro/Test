@@ -252,8 +252,8 @@ export default function SectorContribution() {
       {/* ── Row 2: Monthly Breakdown Bar Chart ── */}
       <div className="bg-gray-50 rounded-2xl p-4 border border-gray-100">
         <div className="flex items-center gap-2 mb-3">
-          <BarChart3 size={14} style={{ color: BLUE }} />
-          <p className="text-sm font-bold" style={{ color: BLUE }}>
+          <BarChart3 size={26} style={{ color: BLUE }} />
+          <p className="text-lg font-bold" style={{ color: BLUE }}>
             Monthly Program Allocation by Sector
           </p>
         </div>

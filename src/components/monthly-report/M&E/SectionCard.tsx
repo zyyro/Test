@@ -17,9 +17,9 @@ import {
 // ─── Data ────────────────────────────────────────────────────────────────────
 
 const GROUPS = [
-  { label: "Female", pct: 45, count: 1989, color: "#7c3aed", fill: "#8b5cf6" },
-  { label: "Youth", pct: 52, count: 2302, color: "#1d4ed8", fill: "#3b82f6" },
-  { label: "Disabled", pct: 6, count: 266, color: "#0e7490", fill: "#06b6d4" },
+  { label: "Female", pct: 45, count: 1989, color: "#0F680D", fill: "#159013" },
+  { label: "Youth", pct: 52, count: 2302, color: "#159013", fill: "#1BB918" },
+  { label: "Disabled", pct: 20, count: 266, color: "#1BB918", fill: "#20E01D" },
 ];
 
 const FOOTER_STATS = [
@@ -49,9 +49,9 @@ const OUTPUT_ROWS = [
 ];
 
 const bars = [
-  { label: "Female:", pct: 45, color: "#3E0570" },
-  { label: "Youth:", pct: 52, color: "#6F09C8" },
-  { label: "Disabled:", pct: 20, color: "#9527F5" },
+  { label: "Female:", pct: 45, color: "#870BF4" },
+  { label: "Youth:", pct: 52, color: "#B263F8" },
+  { label: "Disabled:", pct: 20, color: "#C88FFA" },
 ];
 
 // ─── Hooks ───────────────────────────────────────────────────────────────────
