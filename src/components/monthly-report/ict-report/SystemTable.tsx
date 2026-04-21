@@ -147,7 +147,7 @@ export default function SystemTable() {
       </div>
 
       <div className="overflow-x-auto">
-        <table className="w-full min-w-[900px]">
+        <table className="w-full min-w-225">
           <thead>
             <tr className="bg-gray-50 text-gray-500 text-sm">
               {COLUMNS.map(([col, label]) => (
@@ -198,7 +198,7 @@ export default function SystemTable() {
                 <td className="px-5 py-4 font-bold text-sm text-red-400 whitespace-nowrap">
                   {s.pending}
                 </td>
-                <td className="px-5 py-4 min-w-[150px]">
+                <td className="px-5 py-4 min-w-37.5">
                   <PctBar value={s.pct} />
                 </td>
               </tr>
@@ -224,7 +224,7 @@ export default function SystemTable() {
               <td className="px-5 py-4 font-bold text-sm text-red-400 whitespace-nowrap">
                 {totals.pending}
               </td>
-              <td className="px-5 py-4 min-w-[150px]">
+              <td className="px-5 py-4 min-w-37.5">
                 <PctBar value={totals.pct} />
               </td>
             </tr>

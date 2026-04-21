@@ -387,7 +387,7 @@ function OutcomesPanel() {
             {GROUPS.map((g) => (
               <div key={g.label} className="flex items-center gap-2.5">
                 <span
-                  className="text-[11px] font-semibold text-white px-2.5 py-1 rounded-md min-w-[64px] text-center shrink-0"
+                  className="text-[11px] font-semibold text-white px-2.5 py-1 rounded-md min-w-16 text-center shrink-0"
                   style={{ background: g.color }}
                 >
                   {g.label}

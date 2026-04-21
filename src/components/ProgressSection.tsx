@@ -113,7 +113,7 @@ export default function ProgressSection() {
   return (
     <div className="flex gap-5 flex-wrap lg:flex-nowrap">
       {/* Overall Progress */}
-      <div className="flex-1 grid sm:grid-cols-1  md:grid-col-2 bg-white border border-gray-200 rounded-2xl p-6 min-w-[300px] shadow-sm">
+      <div className="flex-1 grid sm:grid-cols-1  md:grid-col-2 bg-white border border-gray-200 rounded-2xl p-6 min-w-75 shadow-sm">
         <h2 className="font-bold text-base mb-5" style={{ color: "#006cb7" }}>
           Overall Progress
         </h2>
@@ -176,7 +176,7 @@ export default function ProgressSection() {
       </div>
 
       {/* System Performance */}
-      <div className="flex-1 bg-white border border-gray-200 rounded-2xl p-6 min-w-[280px] shadow-sm">
+      <div className="flex-1 bg-white border border-gray-200 rounded-2xl p-6 min-w-70 shadow-sm">
         <h2 className="font-bold text-base mb-5" style={{ color: "#006cb7" }}>
           System Performance
         </h2>
