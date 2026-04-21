@@ -64,7 +64,7 @@ export default function ChartsSection() {
           System Usage Trend
         </h3>
         <p className="text-gray-400 text-sm mb-5">Monthly active users — Jan to Dec</p>
-        <ResponsiveContainer width="100%" height={220}>
+        <ResponsiveContainer width="100%" height={280}>
           <LineChart data={usageTrend}>
             <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
             <XAxis dataKey="month" tick={{ fontSize: 12 }} axisLine={false} tickLine={false} />
@@ -82,7 +82,7 @@ export default function ChartsSection() {
           System Development Activity
         </h3>
         <p className="text-gray-400 text-sm mb-5">Breakdown by system module</p>
-        <ResponsiveContainer width="100%" height={220}>
+        <ResponsiveContainer width="100%" height={280}>
           <BarChart data={devData} barSize={11}>
             <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
             <XAxis dataKey="name" tick={{ fontSize: 10 }} axisLine={false} tickLine={false} />

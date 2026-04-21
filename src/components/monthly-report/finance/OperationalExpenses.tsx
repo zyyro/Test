@@ -23,6 +23,7 @@ import {
   TrendingUp,
   TrendingDown,
 } from "lucide-react";
+import ExpenseBreakdownTable from "./ExpenseBreakdownTable";
 
 const BLUE = "#006cb7";
 const kpiCards = [
@@ -32,7 +33,7 @@ const kpiCards = [
     value: "$240,000",
     sub: "+5% from last quarter • 120 employees",
     up: true,
-    color: "#1d4ed8",
+    color: "#006cb7",
   },
   {
     icon: Calendar,
@@ -109,8 +110,12 @@ const tooltipStyle = {
   fontSize: 12,
 };
 
-function yTickK(v: number) {
-  return v >= 1000 ? `${(v / 1000).toFixed(0)}K` : v;
+function yTickK(v: number | string): string {
+  const value = typeof v === "number" ? v : Number(v);
+
+  if (!Number.isFinite(value)) return "0";
+
+  return value >= 1000 ? `${(value / 1000).toFixed(0)}K` : `${value}`;
 }
 
 function renderLabel({ cx, cy, midAngle, outerRadius, name, value }: any) {
@@ -148,7 +153,7 @@ export default function OperationalExpenses() {
       </div>
 
       {/* Op KPI cards */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4 mb-8">
         {kpiCards.map((k, i) => (
           <div
             key={i}
@@ -188,13 +193,14 @@ export default function OperationalExpenses() {
       </div>
 
       {/* Charts row */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mb-6">
+      {/* <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mb-6"> */}
+      <div className="flex gap-5 mb-8 flex-wrap xl:flex-nowrap">
         {/* Monthly Salary Trend */}
-        <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
+        <div className="w-full xl:w-[30%] bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
           <h3 className="font-bold text-base mb-4" style={{ color: BLUE }}>
             Monthly Salary Trend
           </h3>
-          <ResponsiveContainer width="100%" height={200}>
+          <ResponsiveContainer width="100%" height={250}>
             <AreaChart data={salaryTrend} margin={{ left: -10, right: 10 }}>
               <defs>
                 <linearGradient id="salaryGrad" x1="0" y1="0" x2="0" y2="1">
@@ -217,7 +223,16 @@ export default function OperationalExpenses() {
               />
               <Tooltip
                 contentStyle={tooltipStyle}
-                formatter={(v: number) => [`$${yTickK(v)}`, "Salary"]}
+                formatter={(value) => {
+                  const v =
+                    typeof value === "number"
+                      ? value
+                      : typeof value === "string"
+                        ? Number(value)
+                        : 0;
+
+                  return [`$${yTickK(v)}`, "Salary"];
+                }}
               />
               <Area
                 type="monotone"
@@ -233,20 +248,21 @@ export default function OperationalExpenses() {
         </div>
 
         {/* Expense Breakdown pie */}
-        <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
+        <div className="w-full xl:w-[20%] bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
           <h3 className="font-bold text-base mb-4" style={{ color: BLUE }}>
             Expense Breakdown
           </h3>
-          <ResponsiveContainer width="100%" height={300}>
+          <ResponsiveContainer width="100%" height={200}>
             <PieChart>
               <Pie
                 data={expenseBreakdown}
                 cx="50%"
                 cy="50%"
                 outerRadius={100}
+                innerRadius={50}
                 dataKey="value"
-                labelLine={true}
-                label={renderLabel}
+                labelLine={false}
+                label={false}
               >
                 {expenseBreakdown.map((entry, i) => (
                   <Cell key={i} fill={entry.color} />
@@ -254,10 +270,54 @@ export default function OperationalExpenses() {
               </Pie>
               <Tooltip
                 contentStyle={tooltipStyle}
-                formatter={(v: number) => [`${v}%`, "Share"]}
+                formatter={(value) => {
+                  const v =
+                    typeof value === "number"
+                      ? value
+                      : typeof value === "string"
+                        ? Number(value)
+                        : 0;
+
+                  return [`$${yTickK(v)}`, "Salary"];
+                }}
+              />
+              <Tooltip
+                contentStyle={tooltipStyle}
+                formatter={(value) => {
+                  const v =
+                    typeof value === "number"
+                      ? value
+                      : typeof value === "string"
+                        ? Number(value)
+                        : 0;
+
+                  return [`${yTickK(v)}%`, "Share"];
+                }}
               />
             </PieChart>
           </ResponsiveContainer>
+          <ul className="grid grid-cols-2 ">
+            {expenseBreakdown.map((item, i) => (
+              <li
+                key={i}
+                className="flex items-center mt-3 gap-2 text-sm text-gray-600"
+              >
+                <span
+                  className="w-2.5 h-2.5 rounded-full shrink-0"
+                  style={{ backgroundColor: item.color }}
+                />
+                <span className="">
+                  {item.name}{" "}
+                  <span className="font-bold text-gray-800">{item.value}</span>
+                  {"%"}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        {/* Expense Breakdown table */}
+        <div className="w-full xl:w-[50%]">
+          <ExpenseBreakdownTable />
         </div>
       </div>
     </div>

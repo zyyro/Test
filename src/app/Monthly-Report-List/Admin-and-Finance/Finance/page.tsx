@@ -37,7 +37,7 @@ export default function FinanceReportPage() {
       <OperationalExpenses />
 
       {/* ── Expense Breakdown Table ── */}
-      <ExpenseBreakdownTable />
+      {/* <ExpenseBreakdownTable /> */}
     </div>
   );
 }

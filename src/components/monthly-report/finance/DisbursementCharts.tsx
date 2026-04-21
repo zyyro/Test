@@ -146,9 +146,9 @@ export default function DisbursementCharts() {
               />
               <Tooltip
                 contentStyle={tooltipStyle}
-                formatter={(value: number, name: string) => [
-                  `$${value.toLocaleString()}`,
-                  name === "disbursed" ? "Disbursed" : "Trend",
+                formatter={(value) => [
+                  `$${yTickK(Number(value) || 0)}`,
+                  "Salary",
                 ]}
               />
               <Bar

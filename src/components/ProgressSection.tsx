@@ -3,7 +3,7 @@
 import MonthlyTrendChart from "./MonthlyTrendChart";
 
 const completionData = {
-  percentage: 64,
+  percentage: 62,
   completed: 76,
   pending: 19,
   inProgress: 28,
@@ -34,17 +34,23 @@ function DonutChart({ percentage }: { percentage: number }) {
   const circumference = 2 * Math.PI * radius;
   const cx = size / 2;
   const cy = size / 2;
-  const gap = 3;
-  let cumulative = 0;
+
+  const gap = 10; // space between segments
+  const totalGap = gap * categories.length;
+  const usableCircumference = circumference - totalGap;
+
+  let offset = 0;
 
   return (
     <div className="relative shrink-0" style={{ width: size, height: size }}>
       <svg width={size} height={size} style={{ transform: "rotate(-90deg)" }}>
         {categories.map((seg, i) => {
-          const segAngle = (seg.value / total) * 360 - gap;
-          const dashArray = (segAngle / 360) * circumference;
-          const offset = circumference - (cumulative / 360) * circumference;
-          cumulative += (seg.value / total) * 360;
+          const valuePct = seg.value / total;
+          const dash = valuePct * usableCircumference;
+
+          const currentOffset = offset;
+          offset += dash + gap;
+
           return (
             <circle
               key={i}
@@ -54,13 +60,15 @@ function DonutChart({ percentage }: { percentage: number }) {
               fill="none"
               stroke={seg.color}
               strokeWidth={strokeWidth}
-              strokeDasharray={`${Math.max(0, dashArray)} ${circumference}`}
-              strokeDashoffset={offset}
+              strokeDasharray={`${dash} ${circumference}`}
+              strokeDashoffset={-currentOffset}
               strokeLinecap="round"
+              className="transition-all duration-700"
             />
           );
         })}
       </svg>
+
       <div className="absolute inset-0 flex flex-col items-center justify-center">
         <span className="text-3xl font-bold" style={{ color: "#006cb7" }}>
           {percentage}%
@@ -115,7 +123,7 @@ export default function ProgressSection() {
               const pct = Math.round((item.value / total) * 100);
               return (
                 <div key={item.label}>
-                  <div className="  grid sm:grid-cols-1  md:grid-col-2   mb-1.5">
+                  <div className="grid grid-cols-1 md:grid-cols-2 mb-1.5 items-center">
                     <div className="flex items-center gap-2">
                       <div
                         className="w-2.5 h-2.5 rounded-full"
@@ -125,7 +133,8 @@ export default function ProgressSection() {
                         {item.label}
                       </span>
                     </div>
-                    <div className="flex items-center gap-3">
+
+                    <div className="flex items-center gap-3 md:justify-end">
                       <span className="text-sm text-gray-400">{pct}%</span>
                       <span className="text-sm font-bold text-gray-700 w-6 text-right">
                         {item.value}

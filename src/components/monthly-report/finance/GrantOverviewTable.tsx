@@ -184,7 +184,7 @@ export default function GrantOverviewTable() {
                   </td>
                   <td className="px-6 py-4">
                     <span
-                      className={`text-xs font-bold px-3 py-1.5 rounded-lg ${
+                      className={`text-xs font-bold px-3 py-1.5 rounded-lg whitespace-nowrap ${
                         STATUS_STYLES[g.status] ?? "bg-gray-100 text-gray-500"
                       }`}
                     >
@@ -204,19 +204,19 @@ export default function GrantOverviewTable() {
           Budget by Sector
         </h3>
 
-        <div className="grid grid-cols-2 gap-4 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
           {/* Chart */}
-          <ResponsiveContainer width="100%" height={220}>
+          <ResponsiveContainer width="100%" height={260}>
             <PieChart>
               <Pie
                 data={sectorBudget}
                 cx="50%"
-                cy="50%"
-                outerRadius={90}
+                cy="55%"
+                outerRadius={110}
                 innerRadius={50}
                 dataKey="value"
-                labelLine={true}
-                label={renderLabel}
+                labelLine={false}
+                label={false}
               >
                 {sectorBudget.map((entry, i) => (
                   <Cell key={i} fill={entry.color} />
@@ -230,7 +230,7 @@ export default function GrantOverviewTable() {
           </ResponsiveContainer>
 
           {/* Legend */}
-          <ul className="p-2">
+          <ul className="p-2 ">
             {sectorBudgetLeft.map((item, i) => (
               <li
                 key={i}
