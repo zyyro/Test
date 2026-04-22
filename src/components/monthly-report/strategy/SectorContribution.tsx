@@ -156,15 +156,15 @@ export default function SectorContribution() {
 
       {/* ── Row 1: Donut + Sector Health Cards ── */}
       <div className="flex gap-15 flex-wrap">
-        <div className="flex flex-col items-center justify-center min-w-[200px]">
-          <ResponsiveContainer width={250} height={250}>
+        <div className="flex flex-col items-center justify-center min-w-50">
+          <ResponsiveContainer width={250} height={300}>
             <PieChart>
               <Pie
                 data={sectorData}
                 cx="50%"
-                cy="50%"
-                innerRadius={60}
-                outerRadius={90}
+                cy="40%"
+                innerRadius={50}
+                outerRadius={100}
                 paddingAngle={1}
                 dataKey="value"
                 labelLine={false}
@@ -177,13 +177,13 @@ export default function SectorContribution() {
               <Tooltip contentStyle={tooltipStyle} />
             </PieChart>
           </ResponsiveContainer>
-          <p className="text-xs text-gray-400 -mt-2">
-            Total: <span className="font-bold text-gray-700">54 Programs</span>
+          <p className="text-xs text-gray-400 mt-2">
+            Total: <span className="font-bold text-gray-700 ">54 Programs</span>
           </p>
         </div>
 
         {/* Sector detail cards */}
-        <div className="flex flex-col gap-2 flex-1 min-w-[220px] justify-center">
+        <div className="flex flex-col gap-2 flex-1 min-w-55 justify-center">
           {sectorHealth.map((s, i) => (
             <div
               key={i}
