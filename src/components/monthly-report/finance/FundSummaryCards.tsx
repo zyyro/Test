@@ -106,7 +106,7 @@ export default function FundSummaryCards() {
           </div>
 
           <p
-            className="text-4xl mt-3 font-bold leading-none mb-2"
+            className="text-3xl mt-3 font-bold leading-none mb-2"
             style={{ color: k.color }}
           >
             {k.value}

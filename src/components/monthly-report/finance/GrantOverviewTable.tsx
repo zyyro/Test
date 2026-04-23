@@ -129,9 +129,9 @@ export default function GrantOverviewTable() {
   });
 
   return (
-    <div className="flex gap-5 mb-8 flex-wrap xl:flex-nowrap">
+    <div className="flex gap-5 mb-8 flex-wrap  xl:flex-nowrap">
       {/* Grant Overview (70%) */}
-      <div className="w-full xl:w-[70%] bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden mb-6">
+      <div className="w-full xl:w-[70%] bg-white  rounded-2xl border border-gray-100 shadow-sm overflow-hidden mb-6">
         <div className="px-6 py-4 border-b border-gray-100">
           <h3 className="font-bold text-lg text-gray-800">Grant Overview</h3>
         </div>
@@ -199,12 +199,12 @@ export default function GrantOverviewTable() {
       </div>
 
       {/* Budget by Sector (30%) */}
-      <div className="w-full xl:w-[30%] bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
+      <div className="w-full xl:w-[30%] mb-6 bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
         <h3 className="font-bold text-base mb-4" style={{ color: BLUE }}>
           Budget by Sector
         </h3>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 mb-2 gap-4 items-center">
           {/* Chart */}
           <ResponsiveContainer width="100%" height={260}>
             <PieChart>

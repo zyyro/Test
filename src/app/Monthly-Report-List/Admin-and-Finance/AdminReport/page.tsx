@@ -39,7 +39,7 @@ export default function HRReportPage() {
           <AssetInventory />
         </div>
         <div className="w-full xl:w-[30%]">
-         <AssetSummary />
+          <AssetSummary />
         </div>
       </div>
 

@@ -3,6 +3,14 @@
 import MonthlyReportHeader from "@/components/MonthlyReportHeader";
 import StatCard from "@/components/monthly-report/M&E/StatCrad";
 import SectionCard from "@/components/monthly-report/M&E/SectionCard";
+import AdditionalTasktable from "@/components/monthly-report/M&E/AdditionalTaskTable";
+
+import {
+  Quarterly1Panel,
+  Quarterly2Panel,
+  Quarterly3Panel,
+  Quarterly4Panel,
+} from "@/components/monthly-report/M&E/QualityAssurance";
 
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
@@ -27,6 +35,15 @@ export default function MEReportPage() {
 
       <StatCard />
       <SectionCard />
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-5">
+        <Quarterly1Panel />
+        <Quarterly2Panel />
+        <Quarterly3Panel />
+        <Quarterly4Panel />
+      </div>
+      <div className=" w-full xl:w-[65%]  mt-5 grid grid-cols-1 lg:grid-cols-1 gap-5">
+        <AdditionalTasktable />
+      </div>
     </div>
   );
 }

@@ -42,7 +42,7 @@ const fmt = (n: number) => "$" + Math.abs(n).toLocaleString("en-US");
 
 export default function ExpenseBreakdownTable() {
   return (
-    <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+    <div className="bg-white rounded-2xl border border-gray-100 pb-8.5 shadow-sm overflow-hidden">
       <div className="px-6 py-4 border-b border-gray-100">
         <h3 className="font-bold text-lg text-gray-800">Expense Breakdown</h3>
       </div>
