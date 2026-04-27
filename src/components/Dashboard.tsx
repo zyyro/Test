@@ -102,7 +102,7 @@ const dashboardData: {
     badge: "+0.9%",
     badgeColor: "green",
     icon: Monitor,
-    iconBg: "#f97316",
+    iconBg: "#C19A35",
     items: [
       { label: "Uptime", value: "99.2%", dot: "green" },
       { label: "System Production", value: "6", dot: "green" },

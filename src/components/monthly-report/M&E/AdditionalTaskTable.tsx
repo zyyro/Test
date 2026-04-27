@@ -17,8 +17,18 @@ const tasks = [
     support: "All divisions",
     timeline: "Q1-2026",
     note: "Part 1 & 2 finished and Part 3 is ongoing",
-    status: "Pending",
+    status: "Completed",
   },
+
+
+
+
+
+
+
+
+
+  
   {
     action: "Prepare 2 letters to seek approval on Prakas",
     owner: "M&E",
@@ -29,8 +39,8 @@ const tasks = [
   },
 ];
 const STATUS_STYLES: Record<string, string> = {
-  Pending: "bg-orange-600 text-white",
-  Completed: "bg-red-500 text-white",
+  Pending: "bg-orange-400 text-white",
+  Completed: "bg-green-500 text-white",
 };
 
 const fmt = (n: number) => "$" + Math.abs(n).toLocaleString("en-US");
@@ -39,7 +49,7 @@ export default function ExpenseBreakdownTable() {
   return (
     <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
       <div className="px-6 py-4 border-b border-gray-100">
-        <h3 className="font-bold text-lg text-gray-800">Expense Breakdown</h3>
+        <h3 className="font-bold text-lg text-gray-800">Additional Tasks</h3>
       </div>
       <div className="overflow-x-auto">
         <table className="w-full">
