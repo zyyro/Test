@@ -8,6 +8,7 @@ import ExpenseBreakdownTable from "@/components/monthly-report/finance/ExpenseBr
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import MonthlyReportHeader from "@/components/MonthlyReportHeader";
+import TestTable from "@/components/monthly-report/finance/TestTable";
 
 export default function FinanceReportPage() {
   return (
@@ -37,7 +38,7 @@ export default function FinanceReportPage() {
       <OperationalExpenses />
 
       {/* ── Expense Breakdown Table ── */}
-      {/* <ExpenseBreakdownTable /> */}
+      <TestTable />
     </div>
   );
 }

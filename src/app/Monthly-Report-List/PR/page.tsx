@@ -1,12 +1,13 @@
 "use client";
 
-import PRSummaryCards from "@/components/monthly-report/Public-Relation/CampaignTable";
+import CampaignTable from "@/components/monthly-report/Public-Relation/CampaignTable";
 import PRChartsSection from "@/components/monthly-report/Public-Relation/PRChartsSection";
-import CampaignTable from "@/components/monthly-report/Public-Relation/PRSummaryCards";
+import PRSummaryCards from "@/components/monthly-report/Public-Relation/PRSummaryCards";
 
 import MonthlyReportHeader from "@/components/MonthlyReportHeader";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import RecentActivities from "@/components/monthly-report/Public-Relation/RecentActivities";
 
 export default function PRReportPage() {
   return (
@@ -23,12 +24,15 @@ export default function PRReportPage() {
         <MonthlyReportHeader />
       </div>
       {/* ── Campaign Table ── */}
-      <CampaignTable />
+
+      <PRSummaryCards />
       {/* ── Charts ── */}
       <PRChartsSection />
-
-      {/* ── KPI Summary Cards ── */}
-      <PRSummaryCards />
+      <div className="grid grid-cols-1 gap-5 mb-8 xl:grid-cols-[2fr_1fr]">
+        {/* ── KPI Summary Cards ── */}
+        <CampaignTable />
+        <RecentActivities />
+      </div>
     </div>
   );
 }

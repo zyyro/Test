@@ -56,14 +56,13 @@ export function Quarterly1Panel() {
           >
             <div className="w-2 h-2 rounded-full bg-emerald-400 mt-2 shrink-0" />
             <div>
-              <p className="text-gray-800 text-xs font-semibold leading-snug">
+              <p className="text-gray-800 text-sm font-semibold leading-snug">
                 {c.text}
               </p>
             </div>
           </div>
         ))}
       </div>
-      
     </div>
   );
 }
@@ -87,7 +86,7 @@ export function Quarterly2Panel() {
           >
             <div className="w-2 h-2 rounded-full bg-amber-400 mt-2 shrink-0" />
             <div>
-              <p className="text-gray-800 text-xs font-semibold leading-snug">
+              <p className="text-gray-800 text-sm font-semibold leading-snug">
                 {c.text}
               </p>
             </div>
@@ -119,7 +118,7 @@ export function Quarterly3Panel() {
               {i + 1}
             </div>
             <div>
-              <p className="text-gray-800 text-xs font-semibold leading-snug">
+              <p className="text-gray-800 text-sm font-semibold leading-snug">
                 {a.text}
               </p>
             </div>
@@ -133,7 +132,7 @@ export function Quarterly3Panel() {
 export function Quarterly4Panel() {
   return (
     <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
-      <div className="flex items-center gap-3 mb-5 mt-5 ">
+      <div className="flex items-center gap-3 mb-5">
         <div className="w-9 h-9 rounded-xl flex items-center justify-center bg-[#006cb715]">
           <Clock size={16} className="text-[#006cb7]" />
         </div>
@@ -151,7 +150,7 @@ export function Quarterly4Panel() {
               {i + 1}
             </div>
             <div>
-              <p className="text-[#006cb7] text-xs font-semibold leading-snug">
+              <p className="text-[#006cb7] text-sm font-semibold leading-snug">
                 {a.text}
               </p>
             </div>

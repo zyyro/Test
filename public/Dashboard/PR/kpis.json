@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "icon": "Megaphone",
+    "color": "#2563EB",
+    "label": "Campaign Conducted",
+    "value": "12",
+    "unit": "",
+    "sub": "+2",
+    "subcolor": "#22C55E",
+    "sub2": "this month",
+    "subcolor2": "#6B7280"
+  },
+  {
+    "id": 2,
+    "icon": "Users",
+    "color": "#10B981",
+    "label": "Outreach Reach",
+    "value": "650,000",
+    "unit": "",
+    "sub": "+10%",
+    "subcolor": "#22C55E",
+    "sub2": "vs last month",
+    "subcolor2": "#6B7280"
+  },
+  {
+    "id": 3,
+    "icon": "FileText",
+    "color": "#F59E0B",
+    "label": "Applications Received",
+    "value": "890",
+    "unit": "",
+    "sub": "+15%",
+    "subcolor": "#22C55E",
+    "sub2": "vs last month",
+    "subcolor2": "#6B7280"
+  },
+  {
+    "id": 4,
+    "icon": "ArrowRightLeft",
+    "color": "#7C3AED",
+    "label": "Conversion Rate",
+    "value": "1.37%",
+    "unit": "",
+    "sub": "+0.2%",
+    "subcolor": "#22C55E",
+    "sub2": "this month",
+    "subcolor2": "#6B7280"
+  },
+  {
+    "id": 5,
+    "icon": "BadgeCheck",
+    "color": "#D946EF",
+    "label": "Approved Applications",
+    "value": "15",
+    "unit": "",
+    "sub": "+2",
+    "subcolor": "#22C55E",
+    "sub2": "this month",
+    "subcolor2": "#6B7280"
+  },
+  {
+    "id": 6,
+    "icon": "TrendingDown",
+    "color": "#DC2626",
+    "label": "Drop-off Rate",
+    "value": "85%",
+    "unit": "",
+    "sub": "-5%",
+    "subcolor": "#DC2626",
+    "sub2": "this month",
+    "subcolor2": "#6B7280"
+  }
+]

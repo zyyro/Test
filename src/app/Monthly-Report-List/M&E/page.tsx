@@ -14,6 +14,7 @@ import {
 
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import Additional from "@/components/monthly-report/M&E/Additional";
 
 // import MESummaryCards from "@/components/monthly-report/M&E/MESummaryCards";
 // import MEChartsSection from "@/components/monthly-report/M&E/MEChartsSection";
@@ -41,8 +42,11 @@ export default function MEReportPage() {
         <Quarterly3Panel />
         <Quarterly4Panel />
       </div>
-      <div className=" w-full xl:w-[65%]  mt-5 grid grid-cols-1 lg:grid-cols-1 gap-5">
-        <AdditionalTasktable />
+      <div className="flex gap-5 mb-8 flex-wrap  xl:flex-nowrap ">
+        <div className=" w-full xl:w-[65%]  mt-5 grid grid-cols-1 lg:grid-cols-1 gap-5">
+          <AdditionalTasktable />
+          <Additional />
+        </div>
       </div>
     </div>
   );

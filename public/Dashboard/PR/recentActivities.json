@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "icon": "CheckCircle",
+    "iconColor": "#2563EB",
+    "bgColor": "#DBEAFE",
+    "text": "Campaign \"Back to School Drive\" completed",
+    "sub": "Reach: 125,000",
+    "unit": "2h ago"
+  },
+  {
+    "id": 2,
+    "icon": "Handshake",
+    "iconColor": "#059669",
+    "bgColor": "#D1FAE5",
+    "text": "New partnership with Greenfield Foundation",
+    "sub": "Potential reach: 50,000+",
+    "unit": "1d ago"
+  },
+  {
+    "id": 3,
+    "icon": "TrendingUp",
+    "iconColor": "#D97706",
+    "bgColor": "#FEF3C7",
+    "text": "Application spike detected",
+    "sub": "+120 applications in the last 24h",
+    "unit": "2d ago"
+  },
+  {
+    "id": 4,
+    "icon": "Calendar",
+    "iconColor": "#7C3AED",
+    "bgColor": "#EDE9FE",
+    "text": "Upcoming event: Youth Awareness Campaign",
+    "sub": "Date: May 28, 2024",
+    "unit": "5d ago"
+  }
+]

@@ -1,39 +1,36 @@
 "use client";
 
-const tasks = [
-  {
-    action: "Revise Prakas on ToR & Prakas on SOP",
-    owner: "M&E",
-    support: "Internal Audit, Admin & Finance",
-    timeline: "Q1-2026",
-    note: "Finished 1st revision and pending",
-    status: "Pending",
-  },
-  {
-    action: "Revise SOP (Part 1, 2, & 3) of SDF",
-    owner: "M&E",
-    support: "All divisions",
-    timeline: "Q1-2026",
-    note: "Part 1 & 2 finished and Part 3 is ongoing",
-    status: "Completed",
-  },
-  {
-    action: "Prepare 2 letters to seek approval on Prakas",
-    owner: "M&E",
-    support: "Internal Audit, Admin & Finance",
-    timeline: "Q1-2026",
-    note: "Finished 1st revision and pending",
-    status: "Pending",
-  },
-];
-const STATUS_STYLES: Record<string, string> = {
-  Pending: "bg-orange-400 text-white",
-  Completed: "bg-green-500 text-white",
+import { useState, useEffect } from "react";
+import axios from "axios";
+
+type Activity = {
+  id: number;
+  action: string;
+  owner: string;
+  support: string;
+  timeline: string;
+  note: string;
+  status: "Pending" | "Completed";
 };
+type APIResponse = {
+  activities: Activity[];
+};
+export default function AdditionalPage() {
+  const [activities, setActivities] = useState<Activity[]>([]);
 
-const fmt = (n: number) => "$" + Math.abs(n).toLocaleString("en-US");
+  useEffect(() => {
+    const fetchActivities = async () => {
+      try {
+        const response = await axios.get<APIResponse>("/api/M-E/dashboard");
+        setActivities(response.data.activities);
+      } catch (error) {
+        console.error("Error fetching activities:", error);
+      }
+    };
 
-export default function ExpenseBreakdownTable() {
+    fetchActivities();
+  }, []);
+
   return (
     <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
       <div className="px-6 py-4 border-b border-gray-100">
@@ -61,7 +58,7 @@ export default function ExpenseBreakdownTable() {
             </tr>
           </thead>
           <tbody>
-            {tasks.map((t, i) => (
+            {activities.map((t, i) => (
               <tr
                 key={i}
                 className="border-t border-gray-50 hover:bg-blue-50/20 transition-colors"
@@ -85,7 +82,12 @@ export default function ExpenseBreakdownTable() {
                 </td>
                 <td className="px-6 py-4">
                   <span
-                    className={`text-xs font-bold px-3 py-1.5 rounded-lg whitespace-nowrap ${STATUS_STYLES[t.status] ?? "bg-gray-100 text-gray-500"}`}
+                    className={`text-xs font-bold px-3 py-1.5 rounded-lg whitespace-nowrap 
+                        ${
+                          t.status === "Completed"
+                            ? "bg-green-500 text-white"
+                            : "bg-orange-400 text-white"
+                        }`}
                   >
                     {t.status}
                   </span>
